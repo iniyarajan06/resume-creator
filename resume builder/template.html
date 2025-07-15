@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>{{ name }}'s Resume</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      color: #222;
+    }
+    h1 {
+      font-size: 28px;
+      margin-bottom: 5px;
+    }
+    h2 {
+      margin-top: 30px;
+      font-size: 18px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 4px;
+    }
+    ul {
+      list-style: disc;
+      padding-left: 20px;
+    }
+    p, li {
+      font-size: 14px;
+    }
+    .contact {
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    .bold {
+      font-weight: bold;
+    }
+    a {
+      color: #0366d6;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>{{ name }}</h1>
+  <div class="contact">
+    {{ phone }} | <a href="mailto:{{ email }}">{{ email }}</a> | {{ website }}
+  </div>
+
+  {% if objective %}
+    <h2>Career Objective</h2>
+    <p>{{ objective }}</p>
+  {% endif %}
+
+  {% if skills %}
+    <h2>Skills</h2>
+    <ul>
+      {% for skill in skills %}
+        <li>{{ skill }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  {% if certifications %}
+    <h2>Certifications</h2>
+    <ul>
+      {% for cert in certifications %}
+        <li>{{ cert }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  {% if experience %}
+    <h2>Experience</h2>
+    {% for exp in experience %}
+      <p class="bold">{{ exp.role }} — {{ exp.company }} ({{ exp.from }} to {{ exp.to }})</p>
+      <p>{{ exp.description }}</p>
+    {% endfor %}
+  {% endif %}
+
+  {% if education %}
+    <h2>Education</h2>
+    {% for edu in education %}
+      <p class="bold">{{ edu.degree }} — {{ edu.institution }} ({{ edu.year }})</p>
+    {% endfor %}
+  {% endif %}
+
+  {% if projects %}
+    <h2>Projects</h2>
+    {% for proj in projects %}
+      <p class="bold">{{ proj.name }}</p>
+      <p>{{ proj.detail }}</p>
+    {% endfor %}
+  {% endif %}
+
+  {% if portfolio_links %}
+    <h2>Portfolio</h2>
+    <ul>
+      {% for link in portfolio_links %}
+        <li><a href="{{ link }}">{{ link }}</a></li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+</body>
+</html>
